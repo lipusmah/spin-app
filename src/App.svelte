@@ -1,6 +1,6 @@
 <script lang="ts">
     import { serviceworker, update_ready } from "./lib/stores/serviceworker";
-    import InstallButton from "./lib/components/InstallButton.svelte";
+    import { dataLoader, locationFeatures } from "./lib/stores/data";
     import Layout from "./lib/components/Layout.svelte";
     import { checkDevice } from "./lib/stores/device";
     serviceworker.init();
@@ -10,9 +10,12 @@
         serviceworker.installNewSW();
     }
     checkDevice();
+    dataLoader();
 </script>
 
-<Layout />
+{#if $locationFeatures}
+    <Layout />
+{/if}
 
 <!-- <InstallButton></InstallButton> -->
 

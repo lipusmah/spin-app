@@ -4,7 +4,7 @@
 </script>
 
 <div class="row">
-    <img src={logoImg}>
+    <img src={logoImg} alt="SPIN logo">
     <div>SPIN-app</div>
     <InstallButton></InstallButton>
 </div>

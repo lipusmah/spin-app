@@ -1,16 +1,22 @@
 <script lang="ts">
     import { checkDevice, isDesktop } from "../stores/device";
+    import Navbar from "./Navbar.svelte";
     import Topbar from "./Topbar.svelte";
+    import { routes } from "../../routes";
+    import Router from "svelte-spa-router"
     checkDevice();
-    $: console.log($isDesktop);
 </script>
 
 <div class="root" class:mobile={!$isDesktop}>
     <div class="topbar">
         <Topbar></Topbar>
     </div>
-    <div class="content" />
-    <div class="navigation" />
+    <div class="content">
+        <Router {routes}></Router>
+    </div>
+    <div class="navigation">
+        <Navbar></Navbar>
+    </div>
 </div>
 
 <style lang="scss">
@@ -22,7 +28,7 @@
             "top top"
             "navigation content";
         grid-template-rows: 3rem 1fr;
-        grid-template-columns: 4rem 1fr;
+        grid-template-columns: 9rem 1fr;
     }
     .mobile {
         display: grid;

@@ -5,8 +5,25 @@ import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    server: {
+        proxy: {
+            '/javno': {
+                target: 'https://spin3.sos112.si',
+                changeOrigin: true,
+                secure: false,
+                
+            }
+        }
+    },
+    resolve: {
+        alias: {
+            'src': resolve(__dirname, 'src'),
+            '$lib': resolve(__dirname, 'src/lib'),
+        }
+    },
     plugins: [svelte(), VitePWA({
         injectRegister: null,
+        
         manifestFilename: 'manifest.json',
         devOptions: {
             enabled: true,
@@ -154,15 +171,4 @@ export default defineConfig({
         }
     })
     ],
-    server: {
-        proxy: {
-            '/api': 'https://zrsvn.nukleus.si',
-        }
-    },
-    resolve: {
-        alias: {
-            'src': resolve(__dirname, 'src'),
-            '$lib': resolve(__dirname, 'src/lib'),
-        }
-    }
 })
